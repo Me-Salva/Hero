@@ -53,7 +53,6 @@ public class Game {
 
     private int x = 10;
     private int y = 10;
-    private int z = 10;
 
     private void processKey(KeyStroke key) {
         System.out.println(key);
