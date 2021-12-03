@@ -13,6 +13,7 @@ public class Game {
 
     public Screen screen;
     public Hero hero;
+    public Arena arena;
 
     public Game() {
         try {
@@ -28,12 +29,12 @@ public class Game {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        new Hero(10, 10);
+        arena = new Arena(10, 10);
     }
 
     private void draw() throws IOException {
         screen.clear();
-        hero.draw(screen);
+        arena.draw(screen);
         screen.refresh();
     }
 
@@ -66,7 +67,7 @@ public class Game {
     }
 
     private void moveHero(Position position) {
-        hero.setPosition(position);
+        arena.setPosition(position);
     }
 
 }
