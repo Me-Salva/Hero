@@ -1,7 +1,19 @@
+import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.AbstractTextGraphics;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
 public class Hero {
     private Position position;
+    private Screen screen;
+    TextGraphics graphics;
+
+    {
+        assert false;
+        graphics = screen.newTextGraphics();
+    }
 
     public Hero(int x, int y) {
         position = new Position(x, y);
@@ -20,7 +32,12 @@ public class Hero {
         return new Position(position.getX() + 1,position.getY());
     }
 
-    public void draw(Screen screen) {
+    public void draw(TextGraphics screen) {
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new
+                        TerminalPosition(position.getX(), position.getY()),
+                "X");
     }
 
     public void setPosition(Position position) {
