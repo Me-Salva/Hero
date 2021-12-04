@@ -5,7 +5,7 @@ import com.googlecode.lanterna.graphics.AbstractTextGraphics;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
-public class Hero {
+public class Hero extends Element{
     private Position position;
     private Screen screen;
     TextGraphics graphics;
@@ -16,6 +16,7 @@ public class Hero {
     }
 
     public Hero(int x, int y) {
+        super(x,y);
         position = new Position(x, y);
     }
 
