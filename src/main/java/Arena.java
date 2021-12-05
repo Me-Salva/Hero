@@ -3,9 +3,9 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Arena {
     private final List<Wall> walls;
@@ -62,6 +62,27 @@ public class Arena {
             walls.add(new Wall(width - 1, r));
         }
         return walls;
+    }
+
+    private List<Coin> createCoins() {
+        Random random = new Random();
+        ArrayList<Coin> coins = new ArrayList<>();
+        for (int i = 0; i < 5; i++)
+            coins.add(new Coin(random.nextInt(width - 2) +
+                    1, random.nextInt(height - 2) + 1));
+        return coins;
+    }
+
+    private void retrieveCoins(){
+        Coin[] coins = new Coin[0];
+        for(Coin coin : coins){
+            Hero hero = null;
+            assert false;
+            if(hero.getPosition().equals(coin.getPosition())) {
+                coins.remove(coin);
+                break;
+            }
+        }
     }
 
 }

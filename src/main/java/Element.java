@@ -12,4 +12,8 @@ public abstract class Element {
     }
 
     public abstract void draw(TextGraphics screen);
+
+    public Position getPosition() {
+        return position;
+    }
 }
