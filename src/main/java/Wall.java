@@ -7,4 +7,9 @@ public class Wall extends Element{
 
     public void draw(TextGraphics graphics) {
     }
+
+    @Override
+    public Position move(Arena arena) {
+        return null;
+    }
 }

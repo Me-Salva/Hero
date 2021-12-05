@@ -8,21 +8,19 @@ import java.util.List;
 import java.util.Random;
 
 public class Arena {
-    private final List<Wall> walls;
     public int height;
     public int width;
-    private Screen screen;
-    TextGraphics graphics;
-
-    {
-        assert false;
-        graphics = screen.newTextGraphics();
-    }
+    public Screen screen;
+    public Hero hero;
+    private final List<Wall> walls;
+    public List<Coin> coins;
+    public List<Monster> monsters;
+    public TextGraphics graphics;
 
     public Arena(int width, int height) {
         this.height = height;
         this.width = width;
-        Hero hero = new Hero(10, 10);
+        hero = new Hero(10, 10);
         this.walls = createWalls();
     }
 
@@ -43,12 +41,19 @@ public class Arena {
     public void setPosition(Position position) {
     }
 
-    public void draw(TextGraphics screen) {
+    public void draw(TextGraphics textGraphics) {
+        graphics = screen.newTextGraphics();
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new
                 TerminalSize(width, height), ' ');
         for (Wall wall : walls)
             wall.draw(graphics);
+
+        for(Coin coin : coins)
+            coin.draw(graphics);
+
+        for(Monster monster : monsters)
+            monster.draw(graphics);
     }
 
     private List<Wall> createWalls() {
@@ -74,7 +79,6 @@ public class Arena {
     }
 
     private void retrieveCoins(){
-        Coin[] coins = new Coin[0];
         for(Coin coin : coins){
             Hero hero = null;
             assert false;
@@ -85,4 +89,29 @@ public class Arena {
         }
     }
 
+    private List<Monster> createMonsters() {
+        Random random = new Random();
+        ArrayList<Monster> monsters = new ArrayList<>();
+        for(int i=0; i<5; i++){
+            Monster newmonster = new Monster(random.nextInt(width-2) + 1,
+                    random.nextInt(height-2)+1);
+            if(!monsters.contains(newmonster) && !newmonster.getPosition().equals(hero.getPosition()))
+                monsters.add(newmonster);
+        }
+        return monsters;
+    }
+    
+    public void moveMonsters(){
+        Monster[] monsters = new Monster[0];
+    }
+
+    public boolean verifyMonsterCollisions(){
+        for(Monster monster : monsters){
+            if(monster.getPosition().equals(hero.getPosition())){
+                System.out.println("Game Over");
+                return true;
+            }
+        }
+        return false;
+    }
 }

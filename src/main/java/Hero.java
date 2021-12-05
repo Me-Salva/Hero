@@ -10,11 +10,6 @@ public class Hero extends Element{
     private Screen screen;
     TextGraphics graphics;
 
-    {
-        assert false;
-        graphics = screen.newTextGraphics();
-    }
-
     public Hero(int x, int y) {
         super(x,y);
         position = new Position(x, y);
@@ -39,6 +34,11 @@ public class Hero extends Element{
         graphics.putString(new
                         TerminalPosition(position.getX(), position.getY()),
                 "X");
+    }
+
+    @Override
+    public Position move(Arena arena) {
+        return null;
     }
 
     public void setPosition(Position position) {
