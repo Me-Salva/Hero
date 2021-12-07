@@ -21,7 +21,9 @@ public class Arena {
         this.height = height;
         this.width = width;
         hero = new Hero(10, 10);
-        this.walls = createWalls();
+        walls = createWalls();
+        coins = createCoins();
+        monsters = createMonsters();
     }
 
     public void moveHero(Position position) {
@@ -41,19 +43,18 @@ public class Arena {
     public void setPosition(Position position) {
     }
 
-    public void draw(TextGraphics textGraphics) {
-        graphics = screen.newTextGraphics();
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
-        graphics.fillRectangle(new TerminalPosition(0, 0), new
-                TerminalSize(width, height), ' ');
+    public void draw(TextGraphics screen) {
+        screen.setBackgroundColor(TextColor.Factory.fromString("#336699"));
+        screen.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+
         for (Wall wall : walls)
-            wall.draw(graphics);
+            wall.draw(screen);
 
         for(Coin coin : coins)
-            coin.draw(graphics);
+            coin.draw(screen);
 
         for(Monster monster : monsters)
-            monster.draw(graphics);
+            monster.draw(screen);
     }
 
     private List<Wall> createWalls() {
@@ -62,7 +63,7 @@ public class Arena {
             walls.add(new Wall(c, 0));
             walls.add(new Wall(c, height - 1));
         }
-        for (int r = 1; r < height - 1; r++) {
+        for (int r = 0; r < height - 1; r++) {
             walls.add(new Wall(0, r));
             walls.add(new Wall(width - 1, r));
         }
@@ -73,8 +74,7 @@ public class Arena {
         Random random = new Random();
         ArrayList<Coin> coins = new ArrayList<>();
         for (int i = 0; i < 5; i++)
-            coins.add(new Coin(random.nextInt(width - 2) +
-                    1, random.nextInt(height - 2) + 1));
+            coins.add(new Coin(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
         return coins;
     }
 

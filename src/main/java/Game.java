@@ -60,7 +60,7 @@ public class Game {
 
     private void processKey(KeyStroke key) {
         switch (key.getKeyType()) {
-            case ArrowUp -> moveHero(hero.moveUP());
+            case ArrowUp -> moveHero(hero.moveUp());
             case ArrowDown -> moveHero(hero.moveDown());
             case ArrowLeft -> moveHero(hero.moveLeft());
             case ArrowRight -> moveHero(hero.moveRight());
